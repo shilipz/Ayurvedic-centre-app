@@ -24,6 +24,20 @@ final balanceAmtController = TextEditingController();
 
 class _PatientRegistrationScreenState extends State<PatientRegistrationScreen> {
   @override
+  void dispose() {
+    nameController.dispose();
+    whatsappNoController.dispose();
+    addressController.dispose();
+    locationController.dispose();
+    branchController.dispose();
+    totalAmtController.dispose();
+    discountAmtController.dispose();
+    advanceAmtController.dispose();
+    balanceAmtController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
