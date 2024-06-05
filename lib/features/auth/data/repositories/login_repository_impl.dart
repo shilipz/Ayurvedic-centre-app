@@ -18,8 +18,6 @@ class LoginRepositoryImpl implements LoginRepository {
     try {
       var response = await request.send();
 
-      log('Response status: ${response.statusCode}');
-
       var responseBody = await response.stream.bytesToString();
       var jsonResponse = json.decode(responseBody);
 

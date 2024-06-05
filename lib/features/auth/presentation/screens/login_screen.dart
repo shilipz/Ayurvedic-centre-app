@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:ayurved_app/features/auth/presentation/provider/login_provider.dart';
+import 'package:ayurved_app/features/patient_management/patient_list/presentation/screens/patient_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ayurved_app/core/constants/space_constants.dart';
 import 'package:ayurved_app/core/theme/app_textstyle.dart';
@@ -50,7 +53,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             emailController.text.trim(),
                             passwordController.text.trim(),
                           );
-                          Navigator.pushReplacementNamed(context, '/home');
+
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const PatientListScreen()),
+                            (route) => false,
+                          );
                         } catch (e) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text(e.toString())),

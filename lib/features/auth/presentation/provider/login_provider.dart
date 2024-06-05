@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:ayurved_app/features/auth/data/repositories/login_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ayurved_app/features/auth/data/repositories/login_repository_impl.dart';
 
 class LoginProvider with ChangeNotifier {
   final LoginRepositoryImpl loginRepository;
@@ -25,13 +25,12 @@ class LoginProvider with ChangeNotifier {
         _token = loginResponse.token;
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', _token ?? '');
-
+        log(_token.toString());
         notifyListeners();
       } else {
         throw Exception(loginResponse.message);
       }
     } catch (error) {
-      log('Login error: $error');
       throw Exception('Login failed: $error');
     } finally {
       _isLoading = false;

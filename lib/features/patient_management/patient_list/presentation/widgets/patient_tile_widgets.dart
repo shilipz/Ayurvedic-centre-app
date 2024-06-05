@@ -1,22 +1,32 @@
+import 'package:flutter/material.dart';
 import 'package:ayurved_app/core/constants/space_constants.dart';
 import 'package:ayurved_app/core/theme/app_pallete.dart';
 import 'package:ayurved_app/core/theme/app_textstyle.dart';
-import 'package:ayurved_app/main.dart';
-import 'package:flutter/material.dart';
 
 class PatientTile extends StatelessWidget {
+  final String patientName;
+  final String treatmentName;
+  final String date;
+
   const PatientTile({
     super.key,
+    required this.patientName,
+    required this.treatmentName,
+    required this.date,
   });
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
       height: screenHeight * 0.26,
       width: screenWidth,
       decoration: BoxDecoration(
-          color: AppPallete.patientTileColor,
-          borderRadius: BorderRadius.circular(10)),
+        color: AppPallete.patientTileColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           Padding(
@@ -27,12 +37,12 @@ class PatientTile extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const PatientName(patientName: '1. Vikram Singh'),
+                    PatientName(patientName: patientName),
                     appSpaces.spaceForHeight10,
                     Row(
                       children: [
                         appSpaces.spaceForWidth20,
-                        const PatientTileTreatmentName(),
+                        PatientTileTreatmentName(treatmentName: treatmentName),
                       ],
                     ),
                     appSpaces.spaceForHeight15,
@@ -42,8 +52,7 @@ class PatientTile extends StatelessWidget {
                         const Icon(Icons.calendar_month,
                             color: Colors.red, size: 16),
                         appSpaces.spaceForWidth5,
-                        Text('31/01/2024',
-                            style: AppTextStyles.patientTileSmall),
+                        Text(date, style: AppTextStyles.patientTileSmall),
                         appSpaces.spaceForWidth20,
                         const Icon(Icons.people, color: Colors.red, size: 16),
                         appSpaces.spaceForWidth5,
@@ -62,14 +71,10 @@ class PatientTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'View Booking details',
-                  style: AppTextStyles.patientTilemedium,
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppPallete.appGreencolor,
-                )
+                Text('View Booking details',
+                    style: AppTextStyles.patientTilemedium),
+                const Icon(Icons.arrow_forward_ios_outlined,
+                    color: AppPallete.appGreencolor)
               ],
             ),
           ),
@@ -80,19 +85,22 @@ class PatientTile extends StatelessWidget {
 }
 
 class PatientTileTreatmentName extends StatelessWidget {
+  final String treatmentName;
+
   const PatientTileTreatmentName({
     super.key,
+    required this.treatmentName,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Text('Couple Combo Package (Rejuven...',
-        style: AppTextStyles.patientTilemedium);
+    return Text(treatmentName, style: AppTextStyles.patientTilemediumGreen);
   }
 }
 
 class PatientName extends StatelessWidget {
   final String patientName;
+
   const PatientName({
     super.key,
     required this.patientName,
