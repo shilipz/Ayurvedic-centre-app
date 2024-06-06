@@ -32,6 +32,10 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
+  static final TextStyle fieldTitleGreen = baseStyle.copyWith(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: AppPallete.appGreencolor);
 
   static final TextStyle hintText = baseStyle.copyWith(
     fontSize: 14,

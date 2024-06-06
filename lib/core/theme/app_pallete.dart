@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppPallete {
   static const Color loginCaptionColor = Color.fromRGBO(64, 64, 64, 1);
-  // static const Color gradient1 = Color.fromRGBO(187, 63, 221, 1);
+  static const Color lightGreen = Color.fromRGBO(56, 154, 72, 0.3);
   static const Color appGreencolor = Color.fromRGBO(0, 104, 55, 1);
   static const Color patientTileColor = Color.fromRGBO(241, 241, 241, 1);
   static const Color borderColor = Color.fromRGBO(217, 217, 217, 1);

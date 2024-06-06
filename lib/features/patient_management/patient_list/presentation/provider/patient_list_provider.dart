@@ -20,7 +20,7 @@ class PatientListProvider with ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token') ?? '';
       final response = await http.get(
-        Uri.parse(AppUrl.patientList),
+        Uri.parse(AppUrl.patientListURL),
         headers: {
           'Authorization': 'Bearer $token',
         },

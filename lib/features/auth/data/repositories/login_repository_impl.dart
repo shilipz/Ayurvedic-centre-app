@@ -6,7 +6,7 @@ import 'package:ayurved_app/features/auth/domain/repositories/login_repository.d
 import 'package:http/http.dart' as http;
 
 class LoginRepositoryImpl implements LoginRepository {
-  final String apiUrl = AppUrl.login;
+  final String apiUrl = AppUrl.loginURL;
 
   @override
   Future<LoginResponse> login(String username, String password) async {

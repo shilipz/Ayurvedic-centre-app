@@ -45,18 +45,20 @@ class LoginCaption extends StatelessWidget {
   }
 }
 
-class AuthField extends StatelessWidget {
+class CustomTextField extends StatelessWidget {
+  final IconData? icon;
   final String fieldTitle;
   final bool isObscureText;
   final String? hintText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
-  const AuthField({
+  const CustomTextField({
     super.key,
-    required this.controller,
+    this.controller,
     this.isObscureText = false,
     this.hintText,
     required this.fieldTitle,
+    this.icon,
   });
 
   @override
@@ -67,31 +69,41 @@ class AuthField extends StatelessWidget {
         appSpaces.spaceForHeight30,
         Text(fieldTitle, style: AppTextStyles.fieldTitle),
         appSpaces.spaceForHeight6,
-        TextFormField(
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: AppTextStyles.hintText,
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppPallete.borderColor,
-                width: 2.0,
+        Container(
+          decoration: BoxDecoration(
+              color: AppPallete.patientTileColor,
+              borderRadius: BorderRadius.circular(10)),
+          child: TextFormField(
+            decoration: InputDecoration(
+              suffixIcon: Icon(
+                icon,
+                size: 30,
+                color: AppPallete.appGreencolor,
               ),
-              borderRadius: BorderRadius.circular(10.0),
+              hintText: hintText,
+              hintStyle: AppTextStyles.hintText,
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                  color: AppPallete.borderColor,
+                  width: 2.0,
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide:
+                    const BorderSide(color: AppPallete.borderColor, width: 2),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: AppPallete.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(10.0),
-            ),
+            controller: controller,
+            obscureText: isObscureText,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return '$hintText is missing';
+              }
+              return null;
+            },
           ),
-          controller: controller,
-          obscureText: isObscureText,
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return '$hintText is missing';
-            }
-            return null;
-          },
         ),
       ],
     );

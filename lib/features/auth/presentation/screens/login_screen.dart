@@ -34,12 +34,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     const LoginCaption(),
-                    AuthField(
+                    CustomTextField(
                       fieldTitle: 'Email',
                       controller: emailController,
                       hintText: 'Enter your email',
                     ),
-                    AuthField(
+                    CustomTextField(
                       fieldTitle: 'Password',
                       controller: passwordController,
                       hintText: 'Enter password',
