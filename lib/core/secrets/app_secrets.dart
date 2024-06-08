@@ -5,4 +5,5 @@ class AppUrl {
   static const String patientListURL = "$baseURL/PatientList";
   static const String branchListURL = "$baseURL/BranchList";
   static const String treatmentListURL = "$baseURL/TreatmentList";
+  static const String patientRegister = "$baseURL/PatientUpdate";
 }

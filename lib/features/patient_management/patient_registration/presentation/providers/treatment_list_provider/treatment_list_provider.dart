@@ -21,9 +21,43 @@ class TreatmentListProvider extends ChangeNotifier {
   List<TreatmentListModel> _treatmentList = [];
   bool _isLoading = false;
   bool _hasTreatmentTime = false;
+
   List<TreatmentListModel> get treatmentList => _treatmentList;
   bool get isLoading => _isLoading;
   bool get hasTreatmentTime => _hasTreatmentTime;
+
+  // Use ValueNotifier for counts
+  final ValueNotifier<int> _maleCount = ValueNotifier<int>(1);
+  final ValueNotifier<int> _femaleCount = ValueNotifier<int>(1);
+
+  ValueNotifier<int> get maleCount => _maleCount;
+  ValueNotifier<int> get femaleCount => _femaleCount;
+
+  void incrementMaleCount() {
+    _maleCount.value++;
+  }
+
+  void decrementMaleCount() {
+    if (_maleCount.value > 0) {
+      _maleCount.value--;
+    }
+  }
+
+  void incrementFemaleCount() {
+    _femaleCount.value++;
+  }
+
+  void decrementFemaleCount() {
+    if (_femaleCount.value > 0) {
+      _femaleCount.value--;
+    }
+  }
+
+  void updateMalecount() {
+    notifyListeners();
+
+    maleCount;
+  }
 
   Future<void> fetchTreatmentList() async {
     _isLoading = true;
@@ -43,7 +77,7 @@ class TreatmentListProvider extends ChangeNotifier {
         }
         _treatmentList = fetchedTreatmentList;
       } else {
-        throw Exception('failed to load treatments list');
+        throw Exception('Failed to load treatments list');
       }
     } catch (e) {
       throw Exception('Failed to load Treatment list: $e');
